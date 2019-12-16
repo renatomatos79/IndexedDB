@@ -38,6 +38,17 @@ var app = new Vue({
                 });
                 
             });           
+        },
+
+        onFilterClick(event) {
+            app.pipelines = [];
+            var db = new AzureDashBoardDB();
+            db.getByCode("BIZ", (rows) => {
+                rows.forEach(row => {
+                    app.pipelines.push(row);
+                });
+                
+            });           
         }
     }
 });

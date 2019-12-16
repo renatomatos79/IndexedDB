@@ -109,7 +109,7 @@ var AzureDashBoardDB = function(){
         callback.call(self);
       }
     };   
-  }
+  };
 
   // get rows
   self.getAll = function(callback) {
@@ -131,7 +131,25 @@ var AzureDashBoardDB = function(){
           callback.call(self, result);
         }
     }
-}
+  };
+
+  // get rows
+  self.getByCode = function(paramCode, callback) {
+    let result = [];
+    let objectStore = dbInstance.transaction(self.storePipelines).objectStore(self.storePipelines);
+    let index = objectStore.index("code").get(paramCode);
+    index.onsuccess = function(event) {
+        let cursor = event.target.result;
+        // if there is still another cursor to go, keep runing this code
+        if(cursor) {
+            const id = cursor.id;
+            const code = cursor.code;
+            const name = cursor.name;          
+            result.push({id, code, name});            
+            callback.call(self, result);
+        } 
+    }
+  }
 
   return self;
 }
