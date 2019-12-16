@@ -1,11 +1,47 @@
 <!DOCTYPE HTML>
 <html lang="en-US">
+
 <head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=380">
-	<title>IndexedDB</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=380">
+  <title>IndexedDB</title>
+
 <body>
   <h1>IndexDB Example</h1>
-<body>
-<script src="scripts/todo.js"></script>
+
+  <body>
+    <div id="app">
+      <fieldset>
+        <caption>LOG:</caption>
+        <div v-for="msg in log">{{msg.text}}</div>
+      </fieldset>
+      <br>
+      <form>
+        <table>
+          <caption>Pipelines</caption>
+          <thead>
+            <tr>
+              <th>code</th>
+              <th>name</th>
+            </tr>
+          </thead>
+          <tbody v-for="row in pipelines">
+            <tr>
+              <td>{{row.code}}</td>
+              <td>{{row.name}}</td>
+              <td>
+                  <button :id="row.id" type="button" @click="onRemoveItemClick($event)">Remove</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <button type="button" @click="onRefreshClick($event)">Show Values</button>
+        <button type="button" @click="onAddClick($event)">Append</button>
+      </form>
+    </div>
+    <script src="scripts/Vue.js" type="text/javascript"></script>
+    <script src="scripts/util.js" type="text/javascript"></script>
+    <script src="scripts/database.js"></script>
+    <script src="scripts/app.js" type="text/javascript"></script>
+
 </html>
