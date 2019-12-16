@@ -40,26 +40,26 @@ var AzureDashBoardDB = function(){
   
       // Create an objectStore for this database
       let pipelineStore = dbInstance.createObjectStore(self.storePipelines, { keyPath: "id" });
-      pipelineStore.createIndex("code", "code", { unique: false });
+      pipelineStore.createIndex("code", "code", { unique: true });
       pipelineStore.createIndex("name", "name", { unique: false });
   
-      app.appendLog(`Object ${storePipelines} created!`);
+      app.appendLog(`Object ${self.storePipelines} created!`);
   
       // Create an objectStore for this database
       let releaseStore = dbInstance.createObjectStore(self.storeReleases, { keyPath: "id" });
       releaseStore.createIndex("pipelineCode", "pipelineCode", { unique: false });
-      releaseStore.createIndex("code", "code", { unique: false });
+      releaseStore.createIndex("code", "code", { unique: true });
       releaseStore.createIndex("version", "version", { unique: false });
   
-      app.appendLog(`Object ${storeReleases} created!`);
+      app.appendLog(`Object ${self.storeReleases} created!`);
   
       // Create an objectStore for this database
       let releaseWorkItem = dbInstance.createObjectStore(self.storeWorkItems, { keyPath: "id" });
       releaseWorkItem.createIndex("releaseCode", "releaseCode", { unique: false });
-      releaseWorkItem.createIndex("code", "code", { unique: false });
+      releaseWorkItem.createIndex("code", "code", { unique: true });
       releaseWorkItem.createIndex("description", "description", { unique: false });
           
-      app.appendLog(`Object ${storeWorkItems} created!`);    
+      app.appendLog(`Object ${self.storeWorkItems} created!`);    
     };
 
   };
