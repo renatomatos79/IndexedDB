@@ -49,6 +49,12 @@ var app = new Vue({
                 });
                 
             });           
+        },
+
+        onClearClick(event) {
+            app.pipelines = [];
+            var db = new AzureDashBoardDB();
+            db.clear();
         }
     }
 });

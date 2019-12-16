@@ -111,6 +111,11 @@ var AzureDashBoardDB = function(){
     };   
   };
 
+  self.clear = function() {
+    let transaction = dbInstance.transaction([self.storePipelines], "readwrite");
+    transaction.objectStore(self.storePipelines).clear();
+  };
+
   // get rows
   self.getAll = function(callback) {
     let result = [];
