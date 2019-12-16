@@ -79,8 +79,8 @@ var AzureDashBoardDB = function(){
         app.appendLog('Transaction completed: database modification finished');
     };
 
-    transaction.onerror = function() {
-        app.appendLog(`Transaction not opened due to error: ${transaction.error}`);
+    transaction.onerror = function(error) {
+        app.appendLog(`Transaction not opened due to error: ${error.target.error.message}`);
     };
 
     // call an object store that's already been added to the database
@@ -95,7 +95,7 @@ var AzureDashBoardDB = function(){
 
     // Make a request to add our newItem object to the object store
     let objectStoreRequest = objectStore.add(newItem);
-    objectStoreRequest.onsuccess = function(event) {
+    objectStoreRequest.onsuccess = function() {
         app.appendLog('Request successful.');
     };
   };
